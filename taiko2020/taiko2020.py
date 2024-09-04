@@ -2,7 +2,7 @@ import time, os, re
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -81,7 +81,7 @@ def get_taiko_info():
 
         #根據entry no.排序
         files = sorted(files, key=lambda d: d['url'])
-    except TimeoutException:
+    except StaleElementReferenceException:
         print("try use a longer sleep time")
     finally:
         driver.quit()
